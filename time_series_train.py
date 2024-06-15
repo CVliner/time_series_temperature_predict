@@ -41,9 +41,6 @@ def parse_data_from_file(filename):
     time=0
 
     with open(filename) as csvfile:
-        
-        ### START CODE HERE
-        
         reader = csv.reader(csvfile, delimiter=',')
         next(reader)
         for row in reader:
@@ -51,9 +48,6 @@ def parse_data_from_file(filename):
             time += 1
             temperatures.append(row[1])
         temperatures=np.array(temperatures,dtype='float')
-        
-        ### END CODE HERE
-            
     return times, temperatures
 
 """The next cell will use your function to compute the `times` and `temperatures` and will save these as numpy arrays within the `G` dataclass. This cell will also plot the time series:"""
@@ -124,9 +118,6 @@ Hint:
 """
 
 def create_uncompiled_model():
-
-    ### START CODE HERE
-    
     model = tf.keras.models.Sequential([tf.keras.layers.Conv1D(filters=64, kernel_size=3,
                       strides=1,
                       activation="relu",
@@ -140,8 +131,6 @@ def create_uncompiled_model():
 
         
     ]) 
-    
-    ### END CODE HERE
 
     return model
 
@@ -172,9 +161,6 @@ def adjust_learning_rate(dataset):
     model = create_uncompiled_model()
     
     lr_schedule = tf.keras.callbacks.LearningRateScheduler(lambda epoch: 1e-4 * 10**(epoch / 20))
-    
-    ### START CODE HERE
-    
     # Select your optimizer
     optimizer = 'adam'
     
@@ -182,8 +168,6 @@ def adjust_learning_rate(dataset):
     model.compile(loss=tf.keras.losses.Huber(),
                   optimizer=optimizer,
                   metrics=["mae"]) 
-    
-    ### END CODE HERE
     
     history = model.fit(dataset, epochs=100, callbacks=[lr_schedule])
     
@@ -212,15 +196,9 @@ def create_model():
 
     
     model = create_uncompiled_model()
-
-    ### START CODE HERE
-
     model.compile(loss=tf.keras.losses.Huber(),
                   optimizer='adam',
                   metrics=["mae"])  
-    
-
-    ### END CODE HERE
 
     return model
 
