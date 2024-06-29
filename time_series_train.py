@@ -144,7 +144,7 @@ except:
 else:
     print("Your current architecture is compatible with the windowed dataset! :)")
 
-"""## Adjusting the learning rate - (Optional Exercise)
+"""## Adjusting the learning rate - 
 
 As you saw in the lecture you can leverage Tensorflow's callbacks to dinamically vary the learning rate during training. This can be helpful to get a better sense of which learning rate better acommodates to the problem at hand.
 
@@ -161,7 +161,6 @@ def adjust_learning_rate(dataset):
     model = create_uncompiled_model()
     
     lr_schedule = tf.keras.callbacks.LearningRateScheduler(lambda epoch: 1e-4 * 10**(epoch / 20))
-    # Select your optimizer
     optimizer = 'adam'
     
     # Compile the model passing in the appropriate loss
@@ -186,20 +185,14 @@ Notice that you are reusing the architecture you defined in the `create_uncompil
 
 Hints:
 
-- The training should be really quick so if you notice that each epoch is taking more than a few seconds, consider trying a different architecture.
-
-
 - If after the first epoch you get an output like this: loss: nan - mae: nan it is very likely that your network is suffering from exploding gradients. This is a common problem if you used SGD as optimizer and set a learning rate that is too high. If you encounter this problem consider lowering the learning rate or using Adam with the default learning rate.
 """
 
 def create_model():
-
-    
     model = create_uncompiled_model()
     model.compile(loss=tf.keras.losses.Huber(),
                   optimizer='adam',
                   metrics=["mae"])  
-
     return model
 
 # Save an instance of the model
