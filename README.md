@@ -1,4 +1,4 @@
-### Using real world data
+### Using real world data - Temperature Prediction
 
 In this project you should predict daily temperature based on given csvfile.
 Begin by looking at the structure of the csv that contains the data:
